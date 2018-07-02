@@ -1,0 +1,39 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'babel-polyfill'
+
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import Vuetify from 'vuetify'
+import { createStore } from '../store/index'
+import 'vuetify/dist/vuetify.min.css'
+
+import axios from 'axios'
+import Vuelidate from 'vuelidate'
+
+Vue.prototype.$http = axios
+
+Vue.use(Vuelidate)
+Vue.use(Vuetify, { theme: {
+  primary: '#ee44aa',
+  secondary: '#424242',
+  accent: '#82B1FF',
+  error: '#FF5252',
+  info: '#2196F3',
+  success: '#4CAF50',
+  warning: '#FFC107'
+}})
+
+Vue.config.productionTip = false
+
+const store = createStore()
+
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  store,
+  components: { App },
+  template: '<App/>'
+})
