@@ -6,12 +6,21 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Vuetify from 'vuetify'
-import { createStore } from '../store/index'
+import { createStore } from './store/index'
 import 'vuetify/dist/vuetify.min.css'
+
+import { firebaseApp } from './lib/firebase'
+import VueFire from 'vuefire'
 
 import axios from 'axios'
 import Vuelidate from 'vuelidate'
 
+let app
+
+axios.defaults.baseURL = process.env.API_Base_URL;
+axios.defaults.validateStatus = false;
+
+Vue.prototype.$firebase = firebaseApp
 Vue.prototype.$http = axios
 
 Vue.use(Vuelidate)
@@ -24,16 +33,26 @@ Vue.use(Vuetify, { theme: {
   success: '#4CAF50',
   warning: '#FFC107'
 }})
+Vue.use(VueFire)
 
 Vue.config.productionTip = false
 
 const store = createStore()
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
+firebaseApp.auth().onAuthStateChanged(function(user) {
+  if (!app) {
+    if(user) {
+      store.dispatch('setUser', user)
+    } else {
+      store.dispatch('clearUser')
+    }
+
+    app = new Vue({
+      el: '#app',
+      router,
+      store,
+      components: { App },
+      template: '<App/>'
+    })
+  }
 })

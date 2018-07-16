@@ -5,12 +5,10 @@ const state = {
 const mutations = {
     SET_USER(state, data) {
         state.user = data
-        // localStorage.setItem('user', data.user.uid)
     },
 
     CLEAR_USER(state) {
         state.user = null
-        // localStorage.removeItem('user')
     }
 }
 
@@ -21,13 +19,6 @@ const actions = {
 
     clearUser: ({commit}) => {
         commit('CLEAR_USER')
-    },
-
-    logout: ({commit}) => {
-        new Promise((resolve, reject) => {
-            commit('CLEAR_USER')
-            resolve();
-        })
     }
 }
 

@@ -177,7 +177,6 @@
             </v-container>
           </v-flex>
 
-
           <v-flex xs12 sm4 class="my-3">
             <div class="text-xs-center">
               <h2 class="display-1 section-header">Additional Services Offered</h2>
@@ -276,61 +275,7 @@
         </v-layout>
       </section>
 
-      <section id="documents" v-if="vIsLoggedIn">
-        <v-layout
-          column
-          wrap
-          class="grey lighten-2"
-          align-center
-        >
-          <v-flex xs12>
-              <v-layout row wrap align-center mt-3>
-                <v-flex xs12>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="text-xs-center display-1 section-header">Therapist Documents</div>
-                    </v-card-title>
-
-                  </v-card>
-                </v-flex>
-              </v-layout>
-          </v-flex>
-
-          <v-flex>
-            <v-card class="mb-5 mt-3">
-              <v-card-title primary-title class="layout justify-center">
-                <v-text-field
-                  v-model="search"
-                  append-icon="search"
-                  label="Search"
-                  single-line
-                  hide-details
-                ></v-text-field>
-              </v-card-title>
-
-              <v-data-table
-                :headers="headers"
-                :items="urls"
-                :search="search"
-                hide-actions
-              >
-                <template slot="items" slot-scope="props">
-                  <td class="text-xs-left">{{ props.item.text }}</td>
-                  <td class="text-xs-left">{{ props.item.description }}</td>
-                  <td class="justify-center layout px-0">
-                    <v-btn icon class="mx-0" @click="openURL(props.item.path)">
-                      <v-icon color="red lighten-2">fa-file</v-icon>
-                    </v-btn>
-                  </td>
-                </template>
-                <v-alert slot="no-results" :value="true" color="error" icon="warning">
-                  Your search for "{{ search }}" found no results.
-                </v-alert>
-              </v-data-table>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </section>
+      <doc :loggedIn="vIsLoggedIn"></doc>
 
       <section id="contact">
         <v-layout>
@@ -456,8 +401,9 @@
     >
       <v-card>
         <v-card-title class="red lighten-2 white--text">
-          <span class="headline">Contact Form</span><small>&nbsp;&nbsp;*indicates required field</small>
+          <span class="headline">Contact Form</span>
         </v-card-title>
+
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
@@ -473,6 +419,7 @@
                   @input="$v.form.name.$touch()"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs12>
                 <v-text-field
                   label="Phone"
@@ -488,6 +435,7 @@
                   @input="$v.form.phone.$touch()"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs12>
                 <v-text-field
                   label="Email"
@@ -502,6 +450,7 @@
                   @input="$v.form.email.$touch()"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs12>
                 <v-text-field
                   label="Primary Insurance"
@@ -514,6 +463,7 @@
                   @input="$v.form.insurance.$touch()"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs12>
                 <v-textarea
                   name="Message"
@@ -528,6 +478,7 @@
                   @input="$v.form.message.$touch()"
                 ></v-textarea>
               </v-flex>
+
               <v-flex xs12>
                 <p class="red--text">{{ nonEmergencyText }}</p>
 
@@ -544,6 +495,7 @@
             </v-layout>
           </v-container>
         </v-card-text>
+
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" @click.native="clearDialog">Close</v-btn>
@@ -559,8 +511,9 @@
     >
       <v-card>
         <v-card-title class="red lighten-2 white--text">
-          <span class="headline">Login Form</span><small>&nbsp;&nbsp;*indicates required field</small>
+          <span class="headline">Login Form</span>
         </v-card-title>
+
         <v-card-text>
           <v-container grid-list-md>
             <v-layout wrap>
@@ -578,6 +531,7 @@
                   @input="$v.loginForm.email.$touch()"
                 ></v-text-field>
               </v-flex>
+
               <v-flex xs12>
                 <v-text-field
                   label="Password"
@@ -594,6 +548,7 @@
             </v-layout>
           </v-container>
         </v-card-text>
+
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" @click.native="clearLoginDialog">Close</v-btn>
@@ -605,6 +560,7 @@
 </template>
 
 <script>
+  import Doc from '@/components/Doc'
   import SnackbarQueue from '@/mixins/snackbarQueue'
   import Toolbar from '@/components/Toolbar'
   import { required, email, minLength } from 'vuelidate/lib/validators'
@@ -618,7 +574,8 @@
     ],
 
     components: {
-      Toolbar
+      Toolbar,
+      Doc
     },
 
     data () {
@@ -642,16 +599,6 @@
         contactNumber: '405-821-6447',
         icons: [
           { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' }
-        ],
-        urls: [
-          { key: 1, path: '/static/documents/test.pdf', text: 'Test1 ereettsfsdfdssfsfsdfs', description: 'This is used to do some stuff okaysdfsdf???' },
-          { key: 2, path: '/static/documents/test.pdf', text: 'Test2', description: 'Two' }
-        ],
-        search: '',
-        headers: [
-          { text: 'Document', value: 'text', align: 'left' },
-          { text: 'Description', value: 'description' },
-          { text: 'Actions', value: 'name', sortable: false }
         ]
       }
     },
@@ -689,10 +636,6 @@
           required
         }
       }
-    },
-
-    watch: {
-      
     },
 
     computed: {
@@ -742,7 +685,7 @@
           message: this.form.message
         }
         
-        this.$http.post('/api/sendmail', params)
+        this.$http.post('/sendgrid/send', params)
         .then(response => {
             if (response.status === 200) {
               this.clearDialog()
@@ -768,22 +711,18 @@
       },
 
       submitLoginDialog() {
-        // this.$firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
-        // .then(user => {
-        //   this.vSetUser(user)
-        //   this.clearLoginDialog()
-        //   this.addNotification('Successfully signed in.', 'success')
-        // },
-        // (error) => {
-        //   this.addNotification('Invalid login, try again!', 'error')
-        // }).catch(error => {
-        //   this.clearLoginDialog()
-        //   this.addNotification('Sorry, unable to reach authorization service. Please try again later!', 'error')
-        // })
-      },
-
-      openURL(url) {
-        window.open(url)
+        this.$firebase.auth().signInWithEmailAndPassword(this.loginForm.email, this.loginForm.password)
+        .then(user => {
+          this.vSetUser(user)
+          this.clearLoginDialog()
+          this.addNotification('Successfully signed in.', 'success')
+        },
+        (error) => {
+          this.addNotification('Invalid login, try again!', 'error')
+        }).catch(error => {
+          this.clearLoginDialog()
+          this.addNotification('Sorry, unable to reach authorization service. Please try again later!', 'error')
+        })
       }
     }
   }
