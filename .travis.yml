@@ -3,6 +3,7 @@ node_js: 'lts/*'
 install:
   - npm install now -g
 script:
+  - yarn
   - yarn run build
   - yarn run deploy
   - yarn run alias
