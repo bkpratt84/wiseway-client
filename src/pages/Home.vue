@@ -565,6 +565,7 @@
   import Toolbar from '@/components/Toolbar'
   import { required, email, minLength } from 'vuelidate/lib/validators'
   import { mapActions, mapGetters } from 'vuex'
+  import * as emailjs from 'emailjs-com'
 
   const mustBeTrue = (value) => value == true
 
@@ -684,16 +685,12 @@
           insurance: this.form.insurance,
           message: this.form.message
         }
-        
-        this.$http.post('/sendgrid/send', params)
-        .then(response => {
-            if (response.status === 200) {
-              this.clearDialog()
-              this.addNotification('Thank you! Message sent.', 'success')
 
-              return
-            }
-        }).catch(error => {
+        emailjs.send("wiseway_sendgrid", "wiseway", params, 'user_vJ5X2oyPPlfpuJYfzLkGj')
+        .then(response => {
+          this.clearDialog()
+          this.addNotification('Thank you! Message sent.', 'success')
+        }, error => {
           this.clearDialog()
           this.addNotification('Failed to send message. Please try again later!', 'error')
         })
@@ -716,6 +713,7 @@
           this.vSetUser(user)
           this.clearLoginDialog()
           this.addNotification('Successfully signed in.', 'success')
+          this.$router.go()
         },
         (error) => {
           this.addNotification('Invalid login, try again!', 'error')

@@ -1,11 +1,11 @@
 {
-    "alias": "thewisewaycounseling.com",
-    "env": {
-        "Firebase_Key": "@firebase-key",
-        "Firebase_AuthDomain": "@firebase-auth-domain",
-        "Firebase_ProjectID": "@firebase-project-id",
-        "Firebase_DatabaseURL": "@firebase-database-url",
-        "Firebase_StorageBucket": "@firebase-storage-bucket",
-        "API_Base_URL": "@api-base-url"
-      }
+    "alias": [
+        "thewisewaycounseling.com",
+        "www.thewisewaycounseling.com"
+    ],
+    "files": [
+        "dist"
+    ],
+    "name": "wiseway",
+    "type": "static"
 }

@@ -175,6 +175,7 @@
   import SnackbarQueue from '@/mixins/snackbarQueue'
   import { docsRef, storageRef } from '@/lib/firebase'
   import { required } from 'vuelidate/lib/validators'
+  import { mapGetters } from 'vuex'
 
   export default {
     mixins: [

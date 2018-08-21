@@ -3,9 +3,8 @@ node_js: 'lts/*'
 install:
   - npm install now -g
 script:
-  - yarn run scale-down
+  - yarn run build
   - yarn run deploy
   - yarn run alias
-  - yarn run scale-up
   - yarn run unalias
 if: branch = master AND type IN (push)

@@ -5,20 +5,24 @@
   "author": "BKPRATT84@gmail.com",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js"
+    "start": "webpack-dev-server --inline --config build/webpack.prod.conf.js",
+    "build": "node build/build.js",
+    "now-build": "echo 'Built on Travis CI'",
+    "deploy": "now --token=$NOW_TOKEN",
+    "alias": "now alias --token=$NOW_TOKEN",
+    "unalias": "now rm wiseway --safe --yes --token=$NOW_TOKEN"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "emailjs-com": "^2.2.4",
     "firebase": "^5.2.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuefire": "^1.4.5",
     "vuelidate": "^0.7.4",
     "vuetify": "^1.0.0",
-    "vuex": "^3.0.1",
-    "vuex-persistedstate": "^2.5.4"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -33,6 +37,7 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "dotenv": "^6.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
@@ -49,7 +54,7 @@
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
     "uglifyjs-webpack-plugin": "^1.1.1",
-    "url-loader": "^0.5.8",
+    "url-loader": "^1.0.1",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
