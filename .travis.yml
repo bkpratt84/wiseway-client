@@ -1,11 +1,15 @@
 language: node_js
 node_js: 'lts/*'
-install:
-  - npm install now -g
-script:
+cache:
+  directories:
+    - "node_modules" # This will tell Travis CI to cache the dependencies
+before_script:
   - yarn
-  - yarn run build
-  - yarn run deploy
-  - yarn run alias
-  - yarn run unalias
-if: branch = master AND type IN (push)
+script: yarn run build
+before_deploy: npm install now --no-save # Install Now CLI on Travis
+deploy:
+  - provider: script
+    script: yarn run deploy && yarn run alias && yarn run unalias
+    skip_cleanup: true
+    on:
+      master: true
