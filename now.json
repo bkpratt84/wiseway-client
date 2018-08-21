@@ -7,5 +7,8 @@
         "dist"
     ],
     "name": "wiseway",
+    "static": {
+        "public": "dist"
+    },
     "type": "static"
 }
