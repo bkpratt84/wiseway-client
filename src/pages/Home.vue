@@ -189,7 +189,7 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <v-flex xs12 sm3>
+                <v-flex xs12 sm4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-eye</v-icon>
@@ -200,18 +200,7 @@
                   </v-card>
                 </v-flex>
 
-                <v-flex xs12 sm3>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large color="red lighten-2">fa-clipboard-list</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Psychiatric Evaluations</div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-
-                <v-flex xs12 sm3>
+                <v-flex xs12 sm4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-sticky-note</v-icon>
@@ -222,7 +211,7 @@
                   </v-card>
                 </v-flex>
 
-                <v-flex xs12 sm3>
+                <v-flex xs12 sm4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-band-aid</v-icon>
@@ -599,7 +588,7 @@
         title: 'The Wise Way Counseling',
         contactNumber: '405-821-6447',
         icons: [
-          { key: 1, icon: 'fab fa-facebook', url: 'http://www.facebook.com' }
+          { key: 1, icon: 'fab fa-facebook', url: 'https://www.facebook.com/thewisewaycounseling/' }
         ]
       }
     },
