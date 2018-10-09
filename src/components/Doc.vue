@@ -321,25 +321,25 @@
 
         let file = this.form.file
 
-        docsRef.push(item).then(data => {
-          let fileRef = storageRef.child(file.name).put(file)
+        docsRef.push(item)
+          .then(data => {
+            let fileRef = storageRef.child(file.name).put(file)
 
-          fileRef.on('state_changed', snapshot => {
-            let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            vm.progress = progress
-          }, error => {
-            data.remove()
+            fileRef.on('state_changed', snapshot => {
+              let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              vm.progress = progress
+            }, error => {
+              data.remove()
+              vm.clearDialog()
+              vm.addNotification('Error saving file: ' + error, 'error')
+            }, () => {
+              vm.clearDialog()
+              vm.addNotification('File added.', 'success')
+            })
+          }).catch(error => {
             vm.clearDialog()
             vm.addNotification('Error saving file: ' + error, 'error')
-          }, () => {
-            vm.clearDialog()
-            vm.addNotification('File added.', 'success')
           })
-        }).catch(error => {
-          data.remove()
-          vm.clearDialog()
-          vm.addNotification('Error saving file: ' + error, 'error')
-        })
       }
     }
   }

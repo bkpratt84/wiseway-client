@@ -164,10 +164,10 @@
                     </v-card-title>
                     <v-card-text class="card-services">
                       <p>
-                        Group psychotherapy is a special form of therapy in which a small number of people meet together under the guidance of a profession-ally 
-                        trained therapist to help them-selves and one another. Group therapy helps people learn about them-selves and improve their interpersonal 
+                        Group psychotherapy is a special form of therapy in which a small number of people meet together under the guidance of a professionally 
+                        trained therapist to help themselves and one another. Group therapy helps people learn about them-selves and improve their interpersonal 
                         relationships. It addresses feelings of isolation, depression or anxiety. And it helps people make significant changes so they feel better 
-                        about the quality of their lives. Additionally, group therapists can apply the principles of group to other set-tings and situations such 
+                        about the quality of their lives. Additionally, group therapists can apply the principles of group to other settings and situations such 
                         as businesses, schools and community organizations.
                       </p>
                     </v-card-text>
