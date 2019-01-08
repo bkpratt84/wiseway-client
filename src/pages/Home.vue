@@ -189,7 +189,7 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <v-flex xs12 sm4>
+                <v-flex xs12 sm6>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-eye</v-icon>
@@ -200,18 +200,7 @@
                   </v-card>
                 </v-flex>
 
-                <v-flex xs12 sm4>
-                  <v-card class="elevation-0 transparent">
-                    <v-card-text class="text-xs-center">
-                      <v-icon x-large color="red lighten-2">fa-sticky-note</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-xs-center">Psychological Evaluations</div>
-                    </v-card-title>
-                  </v-card>
-                </v-flex>
-
-                <v-flex xs12 sm4>
+                <v-flex xs12 sm6>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
                       <v-icon x-large color="red lighten-2">fa-band-aid</v-icon>

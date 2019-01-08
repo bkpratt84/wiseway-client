@@ -51,7 +51,17 @@
           flat
           @click="showLoginDialog"
         >
-           Therapist Login
+          Therapist Login
+        </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn
+          v-if="loggedIn"
+          flat
+          @click="logout"
+        >
+          Logout
         </v-btn>
       </v-toolbar-items>
 
@@ -108,7 +118,8 @@
         { key: 4, href: 'providers', title: 'Our Providers', auth: null },
         { key: 5, href: 'documents', title: 'Therapist Documents', auth: true },
         { key: 6, href: 'contact', title: 'Contact', auth: null },
-        { key: 7, href: null, title: 'Therapist Login', auth: false }
+        { key: 7, href: null, title: 'Therapist Login', auth: false },
+        { key: 8, href: null, title: 'Logout', auth: true }
       ]
     }),
 
@@ -143,7 +154,8 @@
 
     methods: {
       ...mapActions({
-          sShowLoginDialog: 'setLoginDialog'
+          sShowLoginDialog: 'setLoginDialog',
+          sClearUser: 'clearUser'
       }),
 
       genList() {
@@ -164,6 +176,18 @@
         this.listItems = list
       },
 
+      logout() {
+        let vm = this
+
+        this.$firebase.auth().signOut()
+          .then(function() {
+            vm.sClearUser()
+          })
+          .catch(function(error) {
+            console.log(error)
+          })
+      },
+
       onScroll() {
         this.currentOffset = window.pageYOffset || document.documentElement.offsetTop
       },
@@ -176,7 +200,7 @@
 
       showLoginDialog() {
         this.sShowLoginDialog(true)
-      }
+      },
     }
   }
 </script>
